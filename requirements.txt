@@ -6,3 +6,6 @@ azure-ai-documentintelligence
 paddleocr
 paddlepaddle
 pdf2image
+
+# classifier
+timm
