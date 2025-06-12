@@ -1,0 +1,8 @@
+# azure
+azure-core
+azure-ai-documentintelligence
+
+# paddle
+paddleocr
+paddlepaddle
+pdf2image
