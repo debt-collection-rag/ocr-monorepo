@@ -1,4 +1,5 @@
 - parallelize azure and paddle
+- markdown tables for paddle
 - speed up paddle on gpu
 - folders
     - utils
