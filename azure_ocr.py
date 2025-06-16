@@ -25,14 +25,14 @@ load_dotenv()
 endpoint = os.getenv("AZURE_API_ENDPOINT")
 key = os.getenv("AZURE_API_KEY")
 
-async def process_single_document(client, doc, index, max_retries=3):
+async def process_single_document(client, page, index, max_retries=3):
     """Process a single document with retry logic for rate limiting"""
     for attempt in range(max_retries):
         try:
             print(f'Processing page {index}')
             poller = await client.begin_analyze_document(
                 "prebuilt-layout", 
-                image_to_bytes(doc),
+                image_to_bytes(page),
                 output_content_format = DocumentContentFormat.MARKDOWN
             )
             result = await poller.result()
@@ -44,17 +44,17 @@ async def process_single_document(client, doc, index, max_retries=3):
             else:
                 raise
 
-async def ocr_async(docs: list):
+async def ocr_async(pages: list):
     """Process multiple documents concurrently using async"""
     async with DocumentIntelligenceClient(
         endpoint=endpoint, credential=AzureKeyCredential(key)
     ) as client:
         tasks = [
-            process_single_document(client, doc, i) 
-            for i, doc in enumerate(docs)
+            process_single_document(client, page, i) 
+            for i, page in enumerate(pages)
         ]
         return await asyncio.gather(*tasks)
 
-def ocr(docs: list):
+def ocr(pages: list):
     """Synchronous wrapper for the async OCR function"""
-    return asyncio.run(ocr_async(docs))
+    return asyncio.run(ocr_async(pages))
