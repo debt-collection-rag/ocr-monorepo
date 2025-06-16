@@ -25,23 +25,23 @@ def pdf_to_text(*docs) -> list[list[str]]:
 
     # flattens
     flat_pages, lengths = flatten(docs_pages)
-
+ 
     page_classes = classify(flat_pages)
 
-    flat_texts = [ocr(page) for page in flat_pages]
+    flat_texts = ocr(flat_pages)
 
     # unflattens
     unflattened = unflatten(flat_texts, lengths)
-
-
+    print(unflattened)
 
 """
 runs pdf_to_text on pdf path supplied as arguments
 
 example (bash) command:
-> python runner.py document1.pdf document2.pdf document3.pdf
-> python runner.py "*.pdf"
-> python runner.py "doc_[0-9]+\.pdf"
+  python runner.py example-docs/23CHLC18998_94523059.pdf
+  python runner.py example-docs/23CHLC18998_94523059.pdf example-docs/23CHLC18998_98768329.pdf
+  python runner.py example-docs/23CHLC18998_*.pdf
+  python runner.py example-docs/*.pdf
 """
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(

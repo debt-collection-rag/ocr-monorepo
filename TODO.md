@@ -2,3 +2,4 @@
 - folders
     - utils
     - ocr methods
+- remove os from azure.py

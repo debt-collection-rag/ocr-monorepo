@@ -10,7 +10,9 @@ https://learn.microsoft.com/azure/ai-services/document-intelligence/quickstarts/
 
 from azure.core.credentials import AzureKeyCredential
 from azure.ai.documentintelligence import DocumentIntelligenceClient
-from azure.ai.documentintelligence.models import AnalyzeDocumentRequest
+from azure.ai.documentintelligence.models import AnalyzeDocumentRequest, DocumentContentFormat
+
+from image_util import image_to_bytes
 
 from dotenv import load_dotenv
 import os
@@ -25,10 +27,13 @@ document_intelligence_client = DocumentIntelligenceClient(
 )
 
 def ocr(docs: list):
-    for doc in docs:
+    result_texts = []
+    for i, doc in enumerate(docs):
+        print('processing page', i)
         poller = document_intelligence_client.begin_analyze_document(
             "prebuilt-layout", 
-            doc,
+            image_to_bytes(doc),
             output_content_format = DocumentContentFormat.MARKDOWN
         )
-        yield poller.result()
+        result_texts.append(poller.result().content)
+    return result_texts
