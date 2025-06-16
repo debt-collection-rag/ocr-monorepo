@@ -23,3 +23,12 @@ key = os.getenv("AZURE_API_KEY")
 document_intelligence_client = DocumentIntelligenceClient(
     endpoint=endpoint, credential=AzureKeyCredential(key)
 )
+
+def ocr(docs: list):
+    for doc in docs:
+        poller = document_intelligence_client.begin_analyze_document(
+            "prebuilt-layout", 
+            doc
+            output_content_format = DocumentContentFormat.MARKDOWN
+        )
+        yield poller.result()
