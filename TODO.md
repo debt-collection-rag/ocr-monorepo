@@ -1,1 +1,1 @@
-- add support for glob/regex patterns thru command line
+- batch classifier calls
