@@ -1,4 +1,5 @@
-- stitching utils
+- parallelize azure and paddle
+- speed up paddle on gpu
 - folders
     - utils
     - ocr methods
