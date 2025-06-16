@@ -1,3 +1,6 @@
+# suppress example notebooks for perms (and API keys...)
+notebooks/
+
 # apple bad
 .DS_Store
 
