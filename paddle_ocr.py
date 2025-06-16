@@ -11,7 +11,7 @@ paddle_ocr_engine = PaddleOCR(use_angle_cls=True)
 def ocr(pages: list):
     result_texts = []
     for i, page in enumerate(pages):
-        print('processing page', i)
+        # print('processing page', i)
         # Convert PIL image to numpy array for PaddleOCR
         page_array = np.array(page)
         result = paddle_ocr_engine.ocr(page_array, cls=True)

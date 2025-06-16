@@ -29,7 +29,7 @@ async def process_single_document(client, page, index, max_retries=3):
     """Process a single document with retry logic for rate limiting"""
     for attempt in range(max_retries):
         try:
-            print(f'Processing page {index}')
+            # print(f'Processing page {index}')
             poller = await client.begin_analyze_document(
                 "prebuilt-layout", 
                 image_to_bytes(page),
