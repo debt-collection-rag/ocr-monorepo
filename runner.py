@@ -5,6 +5,8 @@ from glob_util import expand_patterns
 # for doc processing
 from pdf2image import convert_from_path
 from classifier import classify
+from flattening_util import *
+from azure import ocr
 
 """
 docs: paths to (multi-page) pdf docs to process
@@ -21,11 +23,15 @@ def pdf_to_text(*docs) -> list[list[str]]:
     # maps to pages
     docs_pages = [convert_from_path(doc) for doc in docs]
 
-    # runs classifier on all pages
-    table_inds = [classify(doc_pages) for doc_pages in docs_pages]
-    print(table_inds)
+    # flattens
+    flat_pages, lengths = flatten(docs_pages)
 
-    # TODO: pages to text
+    page_classes = classify(flat_pages)
+
+    flat_texts = [ocr(page) for page in flat_pages]
+
+    # unflattens
+    unflattened = unflatten(flat_texts, lengths)
 
 
 
