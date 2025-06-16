@@ -2,9 +2,9 @@
 azure-core
 azure-ai-documentintelligence
 
-# paddle
-paddleocr
-paddlepaddle
+# paddle - compatible versions
+paddlepaddle==2.6.1
+paddleocr==2.8.1
 
 # classifier
 timm
