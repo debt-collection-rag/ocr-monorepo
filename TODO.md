@@ -1,0 +1,1 @@
+- add support for glob patterns thru command line
