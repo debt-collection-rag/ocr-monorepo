@@ -5,7 +5,10 @@ azure-ai-documentintelligence
 # paddle
 paddleocr
 paddlepaddle
-pdf2image
 
 # classifier
 timm
+
+# runner
+pdf2image
+python-dotenv
