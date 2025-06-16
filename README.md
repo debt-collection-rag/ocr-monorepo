@@ -3,6 +3,7 @@ our completed OCR pipeline
 
 ### requirements
 - make sure `poppler-utils` is installed @ the system level (rather than using pip)
+- (optional) create a python env with `conda create -n monorepo python=3.11`
 - run `pip install -r requirements.txt`
 
 ### helpers
