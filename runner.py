@@ -1,7 +1,8 @@
+# for cmd line arguments
 import argparse
-import glob
-import re
-import os
+from glob_util import expand_patterns
+
+# for doc processing
 from pdf2image import convert_from_path
 from classifier import classify
 
@@ -26,36 +27,7 @@ def pdf_to_text(*docs) -> list[list[str]]:
 
     # TODO: pages to text
 
-def expand_patterns(patterns):
-    """Expand glob and regex patterns to actual file paths"""
-    files = []
-    for pattern in patterns:
-        # First try glob pattern
-        glob_matches = glob.glob(pattern)
-        if glob_matches:
-            files.extend(glob_matches)
-        else:
-            # Try regex pattern on all PDF files in current directory
-            try:
-                regex = re.compile(pattern)
-                for root, dirs, filenames in os.walk('.'):
-                    for filename in filenames:
-                        if filename.endswith('.pdf') and regex.match(filename):
-                            files.append(os.path.join(root, filename))
-            except re.error:
-                # If not a valid regex, treat as literal filename
-                if os.path.exists(pattern):
-                    files.append(pattern)
-    
-    # Remove duplicates while preserving order
-    seen = set()
-    unique_files = []
-    for f in files:
-        if f not in seen:
-            seen.add(f)
-            unique_files.append(f)
-    
-    return unique_files
+
 
 """
 runs pdf_to_text on pdf path supplied as arguments
@@ -71,12 +43,11 @@ if __name__ == '__main__':
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog='''
 Examples:
-  python runner.py document.pdf
-  python runner.py doc1.pdf doc2.pdf doc3.pdf
-  python runner.py "*.pdf"
-  python runner.py "reports/*.pdf"
-  python runner.py "doc_[0-9]+\.pdf"
-        '''
+  python runner.py example-docs/23CHLC18998_94523059.pdf
+  python runner.py example-docs/23CHLC18998_94523059.pdf example-docs/23CHLC18998_98768329.pdf
+  python runner.py example-docs/23CHLC18998_*.pdf
+  python runner.py example-docs/*.pdf
+'''
     )
     parser.add_argument('patterns', nargs='+', 
                         help='Path(s) to PDF file(s) or glob/regex patterns to match PDF files')
