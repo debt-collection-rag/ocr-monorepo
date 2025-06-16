@@ -1,1 +1,4 @@
-- batch classifier calls
+- stitching utils
+- folders
+    - utils
+    - ocr methods
