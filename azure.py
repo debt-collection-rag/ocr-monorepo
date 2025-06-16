@@ -6,6 +6,8 @@ To learn more, please visit the documentation - Quickstart: Document Intelligenc
 https://learn.microsoft.com/azure/ai-services/document-intelligence/quickstarts/get-started-sdks-rest-api?pivots=programming-language-python
 """
 
+# notebook: https://colab.research.google.com/drive/1OCl0EoYK6jGyfVlnEWYDDrrVULP-0Tz8
+
 from azure.core.credentials import AzureKeyCredential
 from azure.ai.documentintelligence import DocumentIntelligenceClient
 from azure.ai.documentintelligence.models import AnalyzeDocumentRequest
