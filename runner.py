@@ -4,10 +4,14 @@ from glob_util import expand_patterns
 
 # for doc processing
 from pdf2image import convert_from_path
+# import numpy as np
+
+# my helpers
 from classifier import classify
 from flattening_util import *
-# from azure_ocr import ocr
-from paddle_ocr import ocr
+from stitching_util import *
+from azure_ocr import ocr as _azure_ocr
+from paddle_ocr import ocr as _paddle_ocr
 
 """
 docs: paths to (multi-page) pdf docs to process
@@ -26,10 +30,15 @@ def pdf_to_text(*docs) -> list[list[str]]:
 
     # flattens
     flat_pages, lengths = flatten(docs_pages)
- 
+
     page_classes = classify(flat_pages)
 
-    flat_texts = ocr(flat_pages)
+    pages_with_tables, pages_without_tables = unstitch(flat_pages, page_classes)
+
+    texts_with_tables = _azure_ocr(pages_with_tables)
+    texts_without_tables = _paddle_ocr(pages_without_tables)
+
+    flat_texts = stitch(texts_with_tables, texts_without_tables, page_classes)
 
     # unflattens
     unflattened = unflatten(flat_texts, lengths)
