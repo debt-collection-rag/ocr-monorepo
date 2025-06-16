@@ -6,7 +6,8 @@ from glob_util import expand_patterns
 from pdf2image import convert_from_path
 from classifier import classify
 from flattening_util import *
-from azure_ocr import ocr
+# from azure_ocr import ocr
+from paddle_ocr import ocr
 
 """
 docs: paths to (multi-page) pdf docs to process
