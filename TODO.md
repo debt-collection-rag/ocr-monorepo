@@ -1,1 +1,1 @@
-- add support for glob patterns thru command line
+- add support for glob/regex patterns thru command line
