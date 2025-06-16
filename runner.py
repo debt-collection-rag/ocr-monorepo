@@ -1,5 +1,6 @@
 import argparse
 from pdf2image import convert_from_path
+from classifier import classify
 
 """
 docs: paths to (multi-page) pdf docs to process
@@ -13,7 +14,11 @@ Notes:
 
 """
 def pdf_to_text(*docs) -> list[list[str]]:
-    pages = [convert_from_path(doc) for doc in docs]
+    # maps to pages
+    docs_pages = [convert_from_path(doc) for doc in docs]
+
+    # runs classifier on all pages
+    table_inds = [classify(doc_pages) for doc_pages in docs_pages]
 
     # TODO: pages to text
 
