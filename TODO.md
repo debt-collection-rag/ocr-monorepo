@@ -1,3 +1,4 @@
+- pass paddle failures to azure
 - parallelize azure and paddle
 - markdown tables for paddle
 - speed up paddle on gpu
