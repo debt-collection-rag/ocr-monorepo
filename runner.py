@@ -42,7 +42,7 @@ def pdf_to_text(*docs) -> list[list[str]]:
 
     # unflattens
     unflattened = unflatten(flat_texts, lengths)
-    print(unflattened)
+    return unflattened
 
 """
 runs pdf_to_text on pdf path supplied as arguments
@@ -82,3 +82,4 @@ Examples:
         print(f"  - {pdf}")
     
     result = pdf_to_text(*pdf_files)
+    print(result)
