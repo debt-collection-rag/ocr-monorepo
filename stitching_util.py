@@ -16,7 +16,7 @@ def stitch(trues, falses, bools):
     assert not trues
     assert not falses
 
-    return array
+    return reversed(array)
 
 
 
