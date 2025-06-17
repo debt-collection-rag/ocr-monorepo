@@ -1,6 +1,7 @@
 # azure
 azure-core
 azure-ai-documentintelligence
+aiohttp
 
 # paddle - compatible versions
 paddlepaddle==2.6.1
