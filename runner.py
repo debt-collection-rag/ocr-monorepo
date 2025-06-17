@@ -19,10 +19,6 @@ returns
 - list per doc of
 - list per page of
 - text representation of page
-
-Notes:
-- Azure parses tables as markdown and checkbox as :selected: and :unselected:
-
 """
 def pdf_to_text(*docs) -> list[list[str]]:
     # maps to pages
