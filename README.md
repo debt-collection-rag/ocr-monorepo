@@ -6,7 +6,7 @@ We use a `.env` file to manage environment variables for Azure. To make your own
 
 ### requirements
 - make sure `poppler-utils` is installed @ the system level (rather than using pip)
-- (optional) create a python env with `conda create -n monorepo python=3.11`
+- (optional) create a python env with `conda create -n monorepo python=3.11` and activate it with `conda activate monorepo`
 - run `pip install -r requirements.txt`
 
 ### helpers
