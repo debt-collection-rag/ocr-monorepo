@@ -6,7 +6,7 @@ def unstitch(array, bools):
 
 def stitch(trues, falses, bools):
     array = []
-    for b in reversed(bools):
+    for b in bools:
         if b:
             array.append(trues.pop(0))
         else:
@@ -16,7 +16,7 @@ def stitch(trues, falses, bools):
     assert not trues
     assert not falses
 
-    return reversed(array)
+    return array
 
 
 
