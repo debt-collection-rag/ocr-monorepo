@@ -4,8 +4,10 @@ from paddleocr import PaddleOCR
 import numpy as np
 
 def result_to_text(result):
-    result_list = list(result[0]) # in case it's none
-    return ''.join([line[1][0] for line in result_list])
+    if result is not None and result[0] is not None:
+        return ''.join([line[1][0] for line in result[0]])
+    else:
+        return ''
 
 paddle_ocr_engine = PaddleOCR(use_angle_cls=True)
 
